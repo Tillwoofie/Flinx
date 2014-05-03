@@ -2,3 +2,4 @@ Flinx
 Flask
 psycopg
 redis
+hiredis
