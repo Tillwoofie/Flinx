@@ -1,2 +1,4 @@
 Flinx
 Flask
+psycopg
+redis
