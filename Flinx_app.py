@@ -24,6 +24,6 @@ def dump_config():
         enc = ""
         for x in config.config.keys():
                 enc += "{}: {}\n".format(x,config.config[x])
-		enc += "sys_modules: {}".format(config.config["sys_modules"])
-		enc += "modules: {}".format(config.config["modules"])
+		enc += "sys_modules: {}".format(config.sys_modules)
+		enc += "modules: {}".format(config.modules)
         return enc
