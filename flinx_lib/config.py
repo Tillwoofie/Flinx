@@ -39,6 +39,6 @@ class Flinx_Config(object):
 				continue
 			if x == 'modules':
 				continue
-			self.conf[x] = fconf.conf[x]
+			self.config[x] = fconf.conf[x]
 			
 	
