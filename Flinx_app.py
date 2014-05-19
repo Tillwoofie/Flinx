@@ -9,7 +9,7 @@ def application(environ, start_response):
 	])
 	return iter([data])
 
-def dump_environ(environ)
+def dump_environ(environ):
 	enc = ""
 	for x in environ.keys():
 		enc += "{}: {}\n".format(x, environ[x])
