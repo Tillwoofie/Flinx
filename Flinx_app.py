@@ -21,7 +21,7 @@ def dump_environ(environ):
 def dump_config():
 	import Flinx.flinx_lib.config as fconf
 	enc = ""
-	for x in fconf.keys():
-		enc += "{}: {}\n".format(x,fconf[x])
+	for x in fconf.conf.keys():
+		enc += "{}: {}\n".format(x,fconf.conf[x])
 	return enc
 
