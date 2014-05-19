@@ -12,13 +12,16 @@ class Flinx_Config(object):
 		self.modules = None
 		self.sys_modules = None
 		self.config = None
+		self.parse_config()
 
 	def parse_config(self):
 		'''
 		Imports the config file (a python file), and parses
 		out the required sections for running.
 		'''
-		import Flinx.config as fconf
+		from importlib import import_module
+		#import Flinx.config as fconf
+		fconf = import_module("Flinx.{}".format(self.flinx_conf))
 		#ensure needed sections are present.
 		# needed sections are: sys-modules, modules. Even if they are just empty.
 		sections = fconf.conf.keys()
@@ -27,5 +30,15 @@ class Flinx_Config(object):
 		if 'modules' not in sections:
 			raise fex.Config_Missing_Exception("modules")
 		#start pulling config in.
-
+		#save the place of the basic modules
+		self.modules = fconf.conf['modules']
+		self.sys_modules = fconf.conf['sys_modules']
+		#pull in all the non-module config
+		for x in fconf.conf.keys():
+			if x == 'sys_modules':
+				continue
+			if x == 'modules':
+				continue
+			self.conf[x] = fconf.conf[x]
+			
 	
