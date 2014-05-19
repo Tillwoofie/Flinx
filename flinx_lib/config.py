@@ -11,7 +11,7 @@ class Flinx_Config(object):
 		self.flinx_conf = conf_file
 		self.modules = None
 		self.sys_modules = None
-		self.config = None
+		self.config = {}
 		self.parse_config()
 
 	def parse_config(self):
