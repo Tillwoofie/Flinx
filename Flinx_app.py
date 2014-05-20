@@ -2,13 +2,17 @@
 
 def application(environ, start_response):
 	import Flinx.flinx_lib.config
+	from Flinx.flinx_lib.url_parse import Url_Parse
 	config = Flinx.flinx_lib.config.Flinx_Config()
 
+	up = Url_Parse(environ)
 	data = "Hello World!\n\n"
 	data += "ENVIRON DUMP\n"
 	data += dump_environ(environ)
 	data += "\nCONFIG_DUMP\n"
 	data += dump_config(config)
+	data += "\nPARSED URL DUMP\n"
+	data += dump_environ(up)
 	start_response("200 OK", [
 		("Content-Type", "text/plain"),
 		("Content-Length", str(len(data)))
