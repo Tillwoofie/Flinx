@@ -35,7 +35,7 @@ def dump_config(config):
 		enc += "modules: {}\n".format(config.modules)
         return enc
 
-def route_request(environ, config):
+def route_request(environ, parsedUrl, config):
 	'''
 	Main function to route requests into different modules.
 	'''
