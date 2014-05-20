@@ -12,7 +12,7 @@ def application(environ, start_response):
 	data += "\nCONFIG_DUMP\n"
 	data += dump_config(config)
 	data += "\nPARSED URL DUMP\n"
-	data += dump_environ(up)
+	data += dump_environ(up.env)
 	start_response("200 OK", [
 		("Content-Type", "text/plain"),
 		("Content-Length", str(len(data)))
