@@ -12,7 +12,7 @@ def application(environ, start_response):
 	from Flinx.flinx_lib.environ_parse import Environ_Parse
 
 	penv = Environ_Parse(environ)
-	data = router.route_request(penv)() #oh my god the syntax
+	data = router.route_request(penv)(environ, penv, config) #oh my god the syntax
 
 
 
