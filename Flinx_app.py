@@ -2,7 +2,7 @@
 import Flinx.flinx_lib.config as fconfig
 config = fconfig.Flinx_Config()
 
-from Flink.flinx_lib.request_router import Request_Router
+from Flinx.flinx_lib.request_router import Request_Router
 router = Request_Router()
 
 imported_plugins = fconfig.import_mods(config['modules'])
