@@ -2,7 +2,6 @@
 
 def main(environ, parsedUrl, config):
 
-	penv = Environ_Parse(environ)
 	data = "Hello World!\n\n"
 	data += "ENVIRON DUMP\n"
 	data += dump_dict(environ)
