@@ -1,3 +1,11 @@
+def not_found(*args):
+	'''
+	Simple reminder that you:
+	a) didn't set a default not_found handler.
+	b) missed configuring routes
+	'''
+	return "I have no idea what you're looking for, bro.\nDo you even lift?\n"
+
 class Request_Router(object):
 	def __init__(self, not_found_handler=not_found):
 		# a route is (domain, path): callback.
@@ -29,10 +37,3 @@ def route_match(route_key, penv):
 	#fall back, no match.
 	return False
 
-def not_found(*args):
-	'''
-	Simple reminder that you:
-	a) didn't set a default not_found handler.
-	b) missed configuring routes
-	'''
-	return "I have no idea what you're looking for, bro.\nDo you even lift?\n"
