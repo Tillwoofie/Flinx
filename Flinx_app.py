@@ -1,20 +1,22 @@
 #Test skeleton
+import Flinx.flinx_lib.config as fconfig
+config = fconfig.Flinx_Config()
+
+from Flink.flinx_lib.request_router import Request_Router
+router = Request_Router()
+
+imported_plugins = fconfig.import_mods(config['modules'])
+router.add_route('*',"/debug", imported_plugins['debug'])
 
 def application(environ, start_response):
-	import Flinx.flinx_lib.config
 	from Flinx.flinx_lib.environ_parse import Environ_Parse
-	config = Flinx.flinx_lib.config.Flinx_Config()
 
 	penv = Environ_Parse(environ)
-	data = "Hello World!\n\n"
-	data += "ENVIRON DUMP\n"
-	data += dump_environ(environ)
-	data += "\nCONFIG_DUMP\n"
-	data += dump_config(config)
-	data += "\nPARSED URL DUMP\n"
-	data += dump_environ(penv.env)
-	data += "\nWSGI VARS\n"
-	data += dump_environ(penv.wsgi_var)
+	data = router.route_request(penv)() #oh my god the syntax
+
+
+
+	# blah, always return 200 for now.
 	start_response("200 OK", [
 		("Content-Type", "text/plain"),
 		("Content-Length", str(len(data)))
@@ -40,5 +42,10 @@ def dump_config(config):
 def route_request(environ, parsedUrl, config):
 	'''
 	Main function to route requests into different modules.
+
+	Takes in environ and config, but only uses information from parsedUrl
+	 (an Environ_Parse instance).
+	
+	For the time being, it needs to have routes statically configured in here.
 	'''
 	pass

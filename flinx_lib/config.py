@@ -41,4 +41,13 @@ class Flinx_Config(object):
 				continue
 			self.config[x] = fconf.conf[x]
 			
-	
+def import_mods(mods, sys=False):
+	imported = {}
+	if not sys:
+		# do le imports
+		for x in mods:
+			imported[x] = import_module("Flinx.plugins.{}".format(x)).main
+	else:
+		# doesn't support loading system modules yet.
+		pass
+	return imported
