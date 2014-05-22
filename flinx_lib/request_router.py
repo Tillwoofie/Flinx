@@ -33,8 +33,8 @@ def route_match(route_key, penv):
 	Returns True if route matches, False if not.
 	'''
 	dom, path = route_key
-	if dom == '*' or dom == penv['SERVER_NAME']:
-		if path == penv['PATH_INFO']:
+	if dom == '*' or dom == penv.env['SERVER_NAME']:
+		if path == penv.env['PATH_INFO']:
 			return True
 	#fall back, no match.
 	return False
