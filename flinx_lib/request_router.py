@@ -11,14 +11,16 @@ class Request_Router(object):
 		# a route is (domain, path): callback.
 		self.routes = {}
 		self.not_found = not_found_handler
+	
 	def add_route(self, domain, path, callback):
 		self.routes[(domain, path)] = callback
+	
 	def route_request(self, parsed_env):
 		'''
 		Takes in the parsed environment, returns a callback to a function to run.
 		'''
 		for route in self.routes.keys():
-			if route_match(route, penv):
+			if route_match(route, parsed_env):
 				return self.routes[route]
 		#return ther fall back not found problem.
 		return self.not_found
