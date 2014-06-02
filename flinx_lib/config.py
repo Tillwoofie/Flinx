@@ -21,7 +21,13 @@ class Flinx_Config(object):
 		'''
 		from importlib import import_module
 		#import Flinx.config as fconf
-		fconf = import_module("Flinx.{}".format(self.flinx_conf))
+		import_error = False
+		try:
+			fconf = import_module("Flinx.{}".format(self.flinx_conf))
+		except ImportError:
+			import_error = True
+		if import_error:
+			raise fex.Config_Missing_Exception("cannot find {}.".format(self.flinx_conf))
 		#ensure needed sections are present.
 		# needed sections are: sys-modules, modules. Even if they are just empty.
 		sections = fconf.conf.keys()
