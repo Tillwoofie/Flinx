@@ -3,13 +3,13 @@
 import psycopg
 
 class PGSql_Config(object):
-	def __init__(self, database=None, user=None, password=None, host=None, port=None):
+	def __init__(self, **kwargs):
 		'''
 		Keeps database information for creation connections with.
 		'''
-		self.database = database
-		self.user = user
-		self.password = password
-		self.host = host
-		self.port = port
+		self.database = kwargs.get('database', 'flinx')
+		self.user = kwargs.get('user', 'flinx')
+		self.password = kwargs.get('password', 'nada')
+		self.host = kwargs.get('host', 'localhost')
+		self.port = kwargs.get('port', '5432')
 
