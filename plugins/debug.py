@@ -7,11 +7,18 @@ def main(environ, parsedUrl, config):
 	data += dump_dict(environ)
 	data += "\nCONFIG_DUMP\n"
 	data += dump_config(config)
+	data += "\nDIR\n"
+	data += dump_dir(config.sys_plugins)
 	data += "\nPARSED URL DUMP\n"
 	data += dump_dict(parsedUrl.env)
 	data += "\nWSGI VARS\n"
 	data += dump_dict(parsedUrl.wsgi_var)
 	return data
+
+def dump_dir(obj):
+	out = ""
+	out += dir(obj)
+	return out
 
 def dump_dict(environ):
 	enc = ""
