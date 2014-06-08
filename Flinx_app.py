@@ -6,14 +6,13 @@ from Flinx.flinx_lib.request_router import Request_Router
 router = Request_Router()
 
 imported_plugins = fconfig.import_mods(config.modules)
-config['imports'] = imported_plugins
 router.add_route('*',"/debug", imported_plugins['debug'])
 
 def application(environ, start_response):
 	from Flinx.flinx_lib.environ_parse import Environ_Parse
 
 	penv = Environ_Parse(environ)
-	data = router.route_request(penv)(environ, penv, config) #oh my god the syntax
+	data = router.route_request(penv)(environ, penv, config, sys_mods) #oh my god the syntax
 
 
 

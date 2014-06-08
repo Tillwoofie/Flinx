@@ -1,6 +1,6 @@
 #Basic template for a debug 
 
-def main(environ, parsedUrl, config):
+def main(environ, parsedUrl, config, sys_mods):
 
 	data = "Hello World!\n\n"
 	data += "ENVIRON DUMP\n"
@@ -8,7 +8,7 @@ def main(environ, parsedUrl, config):
 	data += "\nCONFIG_DUMP\n"
 	data += dump_config(config)
 	data += "\nDIR\n"
-	data += dump_dir(config)
+	data += dump_dir(sys_mods)
 	data += "\nPARSED URL DUMP\n"
 	data += dump_dict(parsedUrl.env)
 	data += "\nWSGI VARS\n"
