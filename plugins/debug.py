@@ -19,6 +19,7 @@ def dump_dir(obj):
 	out = ""
 	for x in obj:
 		out += str(dir(x))
+		out += "\n"
 	return out
 
 def dump_dict(environ):
