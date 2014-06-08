@@ -8,7 +8,7 @@ def main(environ, parsedUrl, config):
 	data += "\nCONFIG_DUMP\n"
 	data += dump_config(config)
 	data += "\nDIR\n"
-	data += dump_dir(config.sys_modules)
+	data += dump_dir(config)
 	data += "\nPARSED URL DUMP\n"
 	data += dump_dict(parsedUrl.env)
 	data += "\nWSGI VARS\n"
