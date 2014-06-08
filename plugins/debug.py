@@ -17,7 +17,7 @@ def main(environ, parsedUrl, config):
 
 def dump_dir(obj):
 	out = ""
-	out += dir(obj)
+	out += str(dir(obj))
 	return out
 
 def dump_dict(environ):
