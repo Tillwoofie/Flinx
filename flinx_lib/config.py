@@ -1,5 +1,4 @@
 import flinx_exceptions as fex
-from importlib import import_module
 class Flinx_Config(object):
 	'''
 	A class to structure the config file for Flinx
@@ -62,6 +61,5 @@ def import_mods(config, sys=False):
 	return imported
 
 def stderr_log(msg):
-	from __future__ import print_function
 	import sys
-	print("INFO_LOG: ", msg, file=sys.stderr)
+	sys.stderr.write("INFO_LOG: {}\n".format(msg))
