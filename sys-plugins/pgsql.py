@@ -1,6 +1,6 @@
 #Generic module to enable database usage.
 
-import psycopg
+import psycopg2
 
 class Config(object):
 	def __init__(self, **kwargs):

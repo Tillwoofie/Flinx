@@ -1,4 +1,4 @@
 Flinx
-psycopg
+psycopg2
 redis
 hiredis
