@@ -16,8 +16,8 @@ def main(environ, parsedUrl, config, sys_mods):
 
 	data += "\nSys-mods names."
 	for x in sys_mods:
-		mod = x() #weird import naming?
-		data += "{}\n".format(x.mod_name)
+		#mod = x() #weird import naming?
+		data += "{}\n".format(x)
 	return data
 
 def dump_dir(obj):
