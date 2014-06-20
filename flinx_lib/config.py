@@ -56,5 +56,6 @@ def import_mods(config, sys=False):
 			imported[x] = import_module("Flinx.plugins.{}".format(x)).main
 	else:
 		# doesn't support loading system modules yet.
-		pass
+		for x in config.sys_modules:
+			imported[x] = import_module("Flinx.sys-plugins.{}".format(x)).Config
 	return imported

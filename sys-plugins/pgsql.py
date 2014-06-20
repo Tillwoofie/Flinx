@@ -2,7 +2,7 @@
 
 import psycopg
 
-class PGSql_Config(object):
+class Config(object):
 	def __init__(self, **kwargs):
 		'''
 		Keeps database information for creation connections with.

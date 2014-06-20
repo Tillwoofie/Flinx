@@ -3,7 +3,7 @@
 import redis
 
 
-class Redis_Config(object):
+class Config(object):
 	def __init__(self, **kwargs):
 		'''
 		Contains the variables to instantiate some redis connections.
