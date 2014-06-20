@@ -5,9 +5,9 @@ config = fconfig.Flinx_Config()
 from Flinx.flinx_lib.request_router import Request_Router
 router = Request_Router()
 
-plugins = fconfig.import_mods(config)
+app_plugins = fconfig.import_mods(config)
 sys_plugins = fconfig.import_mods(config, sys=True)
-router.add_route('*',"/debug", imported_plugins['debug'])
+router.add_route('*',"/debug", app_plugins['debug'])
 
 def application(environ, start_response):
 	from Flinx.flinx_lib.environ_parse import Environ_Parse
