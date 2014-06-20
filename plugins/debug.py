@@ -13,6 +13,11 @@ def main(environ, parsedUrl, config, sys_mods):
 	data += dump_dict(parsedUrl.env)
 	data += "\nWSGI VARS\n"
 	data += dump_dict(parsedUrl.wsgi_var)
+
+	data += "\nSys-mods names."
+	for x in sys_mods:
+		mod = x() #weird import naming?
+		data += "{}\n".format(x.mod_name)
 	return data
 
 def dump_dir(obj):
