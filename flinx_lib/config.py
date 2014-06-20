@@ -1,4 +1,5 @@
 import flinx_exceptions as fex
+from importlib import import_module
 class Flinx_Config(object):
 	'''
 	A class to structure the config file for Flinx
@@ -48,7 +49,6 @@ class Flinx_Config(object):
 			self.config[x] = fconf.conf[x]
 			
 def import_mods(config, sys=False):
-	from importlib import import_module
 	imported = {}
 	if not sys:
 		# do le imports
