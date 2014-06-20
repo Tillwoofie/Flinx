@@ -7,6 +7,7 @@ class Config(object):
 		'''
 		Keeps database information for creation connections with.
 		'''
+		self.mod_name = "pgsql"
 		self.database = kwargs.get('database', 'flinx')
 		self.user = kwargs.get('user', 'flinx')
 		self.password = kwargs.get('password', 'nada')
