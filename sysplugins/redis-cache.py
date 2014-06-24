@@ -27,7 +27,10 @@ class Config(object):
 		'''
 		Simply creates a new connection in the class's connection pool.
 		'''
-		return self.redis.StrictRedis(connection_pool=conn_pool)
+		return redis.StrictRedis(connection_pool=conn_pool)
 	
 	def get_existing_connection(self):
 		return self.conn
+
+	def get_existing_connection_pool(self):
+		return self.conn_pool
