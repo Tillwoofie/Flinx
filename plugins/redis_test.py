@@ -23,14 +23,22 @@ def main(environ, parsedUrl, config, sys_mods):
 		r.set(x, "num")
 	nums_insert = time.time()
 
-	word_pull = []
+	words_pull = []
 	for x in words:
 		words_pull.append(r.get(x))
+	if len(words_pull) == len(words):
+		data += "words retreival good!\n"
+    else:
+		data += "WORDS NOT RETREIVED!\n"
 	words_get = time.time()
 	
 	num_pull = []
 	for x in nums:
 		num_pull.append(r.get(x))
+	if len(num_pull) == len(nums):
+		data += "words retreival good!\n"
+    else:
+		data += "WORDS NOT RETREIVED!\n"
 	nums_get = time.time()
 
 	for x in words:
@@ -49,13 +57,13 @@ def main(environ, parsedUrl, config, sys_mods):
 	nums_del_time = nums_del - words_del
 	total_time = nums_del - start_time
 
-	data += "words insert: %.3d \n" % (words_insert_time,)
-	data += "nums insert: %.3d \n" % (nums_insert_time,)
-	data += "words get: %.3d \n" % (words_ret_time,)
-	data += "nums get: %.3d \n" % (nums_ret_time,)
-	data += "words del: %.3d \n" % (words_del_time,)
-	data += "nums del: %.3d \n" % (nums_del_time,)
-	data += "total elapsed time: %.3d \n" % (total_time,)
+	data += "words insert: %f \n" % (words_insert_time,)
+	data += "nums insert: %f \n" % (nums_insert_time,)
+	data += "words get: %f \n" % (words_ret_time,)
+	data += "nums get: %f \n" % (nums_ret_time,)
+	data += "words del: %f \n" % (words_del_time,)
+	data += "nums del: %f \n" % (nums_del_time,)
+	data += "total elapsed time: %f \n" % (total_time,)
 
 
 	return data
