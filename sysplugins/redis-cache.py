@@ -15,7 +15,7 @@ class Config(object):
 		self.port = kwargs.get('port', '6379')
 		self.db = kwargs.get('db', '0')
 		self.conn_pool = self.get_redis_conn_pool()
-		self.conn = self.get_redis_conn()
+		self.conn = self.get_redis_conn(self.conn_pool)
 
 	def get_redis_conn_pool(self):
 		'''

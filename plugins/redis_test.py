@@ -4,6 +4,9 @@ import time #for some performance tests.
 import random
 
 def main(environ, parsedUrl, config, sys_mods):
+	if not "redis-cache" in sys_mods:
+		return "Cannot test, requires redis-cache module."
+	
 	data = ""
 
 	words = generate_words_list(100)
