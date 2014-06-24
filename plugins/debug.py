@@ -16,7 +16,7 @@ def main(environ, parsedUrl, config, sys_mods):
 
 	data += "\nSys-mods names.\n"
 	for x in sys_mods:
-		mod = sys_mods[x].Config() #weird import naming?
+		mod = sys_mods[x] #weird import naming?
 		data += "{}\n".format(mod.mod_name)
 	return data
 
