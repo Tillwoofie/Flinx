@@ -1,6 +1,7 @@
 # implements a quick test for the redis sysmodule
 
 import time #for some performance tests.
+import random
 
 def main(environ, parsedUrl, config, sys_mods):
 	data = ""
