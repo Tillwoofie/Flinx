@@ -5,6 +5,14 @@ import time #for some performance tests.
 def main(environ, parsedUrl, config, sys_mods):
 	data = ""
 
+	words = generate_words_list(100)
+	nums = generate_number_list(100)
+
+	data += "Random words and numbers:\n"
+	data += str(words)
+	data += "\n"
+	data += str(nums)
+
 	return data
 
 def generate_words_list(length):

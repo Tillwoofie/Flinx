@@ -8,6 +8,7 @@ router = Request_Router()
 app_plugins = fconfig.import_mods(config)
 sys_plugins = fconfig.import_mods(config, sys=True)
 router.add_route('*',"/debug", app_plugins['debug'])
+router.add_route('*',"/redis_test", app_plugins['redis_test'])
 
 def application(environ, start_response):
 	from Flinx.flinx_lib.environ_parse import Environ_Parse
