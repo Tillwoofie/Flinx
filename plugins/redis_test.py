@@ -6,6 +6,7 @@ import random
 def main(environ, parsedUrl, config, sys_mods):
 	if not "redis-cache" in sys_mods:
 		return "Cannot test, requires redis-cache module."
+	r = sys_mods['redis-cache']
 	
 	data = ""
 
@@ -16,6 +17,11 @@ def main(environ, parsedUrl, config, sys_mods):
 	data += str(words)
 	data += "\n"
 	data += str(nums)
+	data += "\n"
+
+	r.set("test", "blah")
+	data += str(r.get("test"))
+	r.delete("test")
 
 	return data
 
