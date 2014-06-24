@@ -37,7 +37,7 @@ def main(environ, parsedUrl, config, sys_mods):
 		num_pull.append(r.get(x))
 	if len(num_pull) == len(nums):
 		data += "words retreival good!\n"
-    else:
+	else:
 		data += "WORDS NOT RETREIVED!\n"
 	nums_get = time.time()
 
