@@ -17,7 +17,7 @@ class Environ_Parse(object):
 
 
 	def parse_query(self):
-		args = []
+		args = {}
 		for part in self.env["QUERY_STRING"].split("&"):
 			if "=" in part:
 				s = part.split("=")
