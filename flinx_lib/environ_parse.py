@@ -9,7 +9,24 @@ class Environ_Parse(object):
 		self.env = {}
 		self.wsgi_var = {}
 		self.parse_environ()
-	
+		if "QUERY_STRING" in self.env and self.env["QUERY_STRING"] != "":
+			# if it exists and isn't blank...
+			self.env["PARSED_QUERY"] = self.parse_query()
+		else:
+			self.env["PARSED_QUERY"] = None
+
+
+	def parse_environ(self):
+		args = []
+		for part in self.env["QUERY_STRING"].split("&"):
+			if "=" in part:
+				s = part.split("=")
+				args[s[0]] = s[1]
+			else:
+				args[part] = None #just as a flag, arg present, but not set.
+		return args
+
+
 	def parse_environ(self):
 		'''
 		Parses out the PEP-0333 vars.
