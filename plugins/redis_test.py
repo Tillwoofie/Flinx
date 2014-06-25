@@ -6,6 +6,7 @@ import random
 def main(environ, parsedUrl, config, sys_mods):
 	if not "redis-cache" in sys_mods:
 		return "Cannot test, requires redis-cache module."
+		stderr_log("Redis could not be loaded, can't run module redis-test")
 	r = sys_mods['redis-cache'].get_existing_connection()
 	
 	data = ""
@@ -14,6 +15,7 @@ def main(environ, parsedUrl, config, sys_mods):
 	nums = generate_number_list(100)
 
 	data += "Redis performance/functionality test\n"
+		stderr_log("Redis could not be loaded, can't run module redis-test")
 	start_time = time.time()
 	for x in words:
 		r.set(x, "1")
@@ -80,7 +82,38 @@ def generate_words_list(length):
 			break
 	return word_list.keys()
 
+
 def generate_number_list(length):
 	numlist = [ x for x in range(length) ]
 	return numlist
 		
+
+def test_list_redis(r_conn, iterable):
+	#set test
+	start = time.time()
+	for x in iterable:
+		r_conn.set(x, x)
+	end = time.time()
+	insert_time = end - start
+
+	good = True
+	start = time.time()
+	for x in iterable:
+		q = r_conn.get(x)
+		if q != x:
+			good = False
+	end = time.time()
+	get_time = end - start
+
+	start = time.time()
+	for x in iterable:
+		r_conn.delete(x)
+	end = time.time()
+	del_time = end - start
+
+	return (good, insert_time, get_time, del_time)
+
+
+def stderr_log(msg):
+	import sys
+	sys.stderr.write("INFO_LOG: {}\n".format(msg))
