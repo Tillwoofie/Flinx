@@ -29,7 +29,7 @@ class Environ_Parse(object):
 
 	def parse_query2(self):
 		import urlparse
-		return urlparse.parse_qsl(self.env["QUERY_STRING"]
+		return urlparse.parse_qsl(self.env["QUERY_STRING"])
 
 
 	def parse_environ(self):
