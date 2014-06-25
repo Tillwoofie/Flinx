@@ -5,8 +5,8 @@ import random
 
 def main(environ, parsedUrl, config, sys_mods):
 	if not "redis-cache" in sys_mods:
-		return "Cannot test, requires redis-cache module."
 		stderr_log("Redis could not be loaded, can't run module redis-test")
+		return "Cannot test, requires redis-cache module."
 	r = sys_mods['redis-cache'].get_existing_connection()
 	
 	data = ""
