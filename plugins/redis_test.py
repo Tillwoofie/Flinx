@@ -15,7 +15,6 @@ def main(environ, parsedUrl, config, sys_mods):
 	nums = generate_number_list(100)
 
 	data += "Redis performance/functionality test\n"
-		stderr_log("Redis could not be loaded, can't run module redis-test")
 	start_time = time.time()
 	for x in words:
 		r.set(x, "1")
