@@ -11,7 +11,7 @@ class Environ_Parse(object):
 		self.parse_environ()
 		if "QUERY_STRING" in self.env and self.env["QUERY_STRING"] != "":
 			# if it exists and isn't blank...
-			self.env["PARSED_QUERY"] = self.parse_query()
+			self.env["PARSED_QUERY"] = self.parse_query2()
 		else:
 			self.env["PARSED_QUERY"] = None
 
@@ -25,6 +25,11 @@ class Environ_Parse(object):
 			else:
 				args[part] = None #just as a flag, arg present, but not set.
 		return args
+
+
+	def parse_query2(self):
+		import urlparse
+		return urlparse.parse_qsl(self.env["QUERY_STRING"]
 
 
 	def parse_environ(self):
