@@ -11,23 +11,12 @@ class Environ_Parse(object):
 		self.parse_environ()
 		if "QUERY_STRING" in self.env and self.env["QUERY_STRING"] != "":
 			# if it exists and isn't blank...
-			self.env["PARSED_QUERY"] = self.parse_query2()
+			self.env["PARSED_QUERY"] = self.parse_query()
 		else:
 			self.env["PARSED_QUERY"] = None
 
 
 	def parse_query(self):
-		args = {}
-		for part in self.env["QUERY_STRING"].split("&"):
-			if "=" in part:
-				s = part.split("=")
-				args[s[0]] = s[1]
-			else:
-				args[part] = None #just as a flag, arg present, but not set.
-		return args
-
-
-	def parse_query2(self):
 		import urlparse
 		return dict(urlparse.parse_qsl(self.env["QUERY_STRING"]))
 
