@@ -10,8 +10,7 @@ def main(environ, parsedUrl, config, sys_mods):
 	r = sys_mods['redis-cache'].get_existing_connection()
 	
 	data = ""
-
-	LIST_SIZE = int(get_url_arg("size", parsedUrl)) or 100
+		LIST_SIZE = int(get_url_arg("size", parsedUrl, 100))
 	words = generate_words_list(LIST_SIZE)
 	success, w_ins, w_get, w_del = test_list_redis(r, words)
 
@@ -86,8 +85,8 @@ def stderr_log(msg):
 	import sys
 	sys.stderr.write("INFO_LOG: {}\n".format(msg))
 
-def get_url_arg(arg, env):
+def get_url_arg(arg, env, default=None):
 	if env.env["PARSED_QUERY"] != None:
-		return env.env["PARSED_QUERY"].get(arg, None)
+		return env.env["PARSED_QUERY"].get(arg, default)
 	else:
-		return None
+		return default
