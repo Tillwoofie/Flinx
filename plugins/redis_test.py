@@ -11,7 +11,7 @@ def main(environ, parsedUrl, config, sys_mods):
 	
 	data = ""
 
-	LIST_SIZE = get_url_arg("size", parsedUrl) or 100
+	LIST_SIZE = int(get_url_arg("size", parsedUrl)) or 100
 	words = generate_words_list(LIST_SIZE)
 	success, w_ins, w_get, w_del = test_list_redis(r, words)
 
