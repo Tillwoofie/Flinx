@@ -79,7 +79,7 @@ def test_list_redis(r_conn, iterable):
 
 
 def ret_r_timing(ins, get, delete):
-	return "Insert Time: {} Get Time: {} Delete Time: {}".format(ins, get, delete)
+	return "Insert Time: {} Get Time: {} Delete Time: {}\n".format(ins, get, delete)
 
 
 def stderr_log(msg):
