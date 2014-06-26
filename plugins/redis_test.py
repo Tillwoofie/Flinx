@@ -11,61 +11,26 @@ def main(environ, parsedUrl, config, sys_mods):
 	
 	data = ""
 
-	words = generate_words_list(100)
-	nums = generate_number_list(100)
+	LIST_SIZE = get_url_arg("size", env) or 100
+	words = generate_words_list(LIST_SIZE)
+	success, w_ins, w_get, w_del = test_list_redis(r, words)
 
-	data += "Redis performance/functionality test\n"
-	start_time = time.time()
-	for x in words:
-		r.set(x, "1")
-	words_insert = time.time()
-
-	for x in nums:
-		r.set(x, "num")
-	nums_insert = time.time()
-
-	words_pull = []
-	for x in words:
-		words_pull.append(r.get(x))
-	if len(words_pull) == len(words):
-		data += "words retreival good!\n"
+	if success:
+		data += "Words Test Success! Size = {} \n".format(LIST_SIZE)
 	else:
-		data += "WORDS NOT RETREIVED!\n"
-	words_get = time.time()
+		data += "Words Test Failure :( Size = {} \n".format(LIST_SIZE)
+	data += ret_r_timing(w_ins, w_get, w_del)
+	del(words) #prevent too much memory from being used.
 	
-	num_pull = []
-	for x in nums:
-		num_pull.append(r.get(x))
-	if len(num_pull) == len(nums):
-		data += "words retreival good!\n"
+	nums = generate_number_list(LIST_SIZE)
+	success, n_ins, n_get, n_del = test_list_redis(r, nums)
+
+	if success:
+		data += "Words Test Success! Size = {} \n".format(LIST_SIZE)
 	else:
-		data += "WORDS NOT RETREIVED!\n"
-	nums_get = time.time()
-
-	for x in words:
-		r.delete(x)
-	words_del = time.time()
-
-	for x in nums:
-		r.delete(x)
-	nums_del = time.time()
-
-	words_insert_time = words_insert - start_time
-	nums_insert_time = nums_insert - words_insert
-	words_ret_time = words_get - nums_insert
-	nums_ret_time = nums_get - words_get
-	words_del_time = words_del - nums_get
-	nums_del_time = nums_del - words_del
-	total_time = nums_del - start_time
-
-	data += "words insert: %f \n" % (words_insert_time,)
-	data += "nums insert: %f \n" % (nums_insert_time,)
-	data += "words get: %f \n" % (words_ret_time,)
-	data += "nums get: %f \n" % (nums_ret_time,)
-	data += "words del: %f \n" % (words_del_time,)
-	data += "nums del: %f \n" % (nums_del_time,)
-	data += "total elapsed time: %f \n" % (total_time,)
-
+		data += "Words Test Failure :( Size = {} \n".format(LIST_SIZE)
+	data += ret_r_timing(w_ins, w_get, w_del)
+	del(nums) #prevent too much memory from being used.
 
 	return data
 
@@ -113,6 +78,16 @@ def test_list_redis(r_conn, iterable):
 	return (good, insert_time, get_time, del_time)
 
 
+def ret_r_timing(ins, get, delete):
+	return "Insert Time: {} Get Time: {} Delete Time: {}".format(ins, get, delete)
+
+
 def stderr_log(msg):
 	import sys
 	sys.stderr.write("INFO_LOG: {}\n".format(msg))
+
+def get_url_arg(arg, env):
+	if env.env["PARSED_QUERY"] != None:
+		return enc.env["PARSED_QUERY"].get(arg, None)
+	else:
+		return None
