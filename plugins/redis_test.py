@@ -88,6 +88,6 @@ def stderr_log(msg):
 
 def get_url_arg(arg, env):
 	if env.env["PARSED_QUERY"] != None:
-		return enc.env["PARSED_QUERY"].get(arg, None)
+		return env.env["PARSED_QUERY"].get(arg, None)
 	else:
 		return None
