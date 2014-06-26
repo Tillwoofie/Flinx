@@ -34,7 +34,7 @@ def main(environ, parsedUrl, config, sys_mods):
 	return data
 
 def generate_words_list(length):
-	words = ["a", "b", "c", "d", "e", "f", "g", "h"]
+	words = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ"
 	word_list = {} #using a dictionary isn't nessecary, but simple for avoiding duplicates.
 	x = 0
 	while True:
