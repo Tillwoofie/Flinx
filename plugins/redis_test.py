@@ -11,7 +11,7 @@ def main(environ, parsedUrl, config, sys_mods):
 	
 	data = ""
 
-	LIST_SIZE = get_url_arg("size", env) or 100
+	LIST_SIZE = get_url_arg("size", parsedUrl) or 100
 	words = generate_words_list(LIST_SIZE)
 	success, w_ins, w_get, w_del = test_list_redis(r, words)
 
@@ -64,7 +64,7 @@ def test_list_redis(r_conn, iterable):
 	start = time.time()
 	for x in iterable:
 		q = r_conn.get(x)
-		if q != x:
+		if q != str(x):
 			good = False
 	end = time.time()
 	get_time = end - start
