@@ -2,22 +2,26 @@
 
 def main(environ, parsedUrl, config, sys_mods):
 
+	pure = bool(get_url_arg("pure", parsedUrl, False))
+
 	data = "Hello World!\n\n"
 	data += "ENVIRON DUMP\n"
 	data += dump_dict(environ)
-	data += "\nCONFIG_DUMP\n"
-	data += dump_config(config)
-	data += "\nDIR\n"
-	data += dump_dir(sys_mods)
-	data += "\nPARSED URL DUMP\n"
-	data += dump_dict(parsedUrl.env)
+	if not pure:
+		data += "\nCONFIG_DUMP\n"
+		data += dump_config(config)
+		data += "\nDIR\n"
+		data += dump_dir(sys_mods)
+		data += "\nPARSED URL DUMP\n"
+		data += dump_dict(parsedUrl.env)
 	data += "\nWSGI VARS\n"
 	data += dump_dict(parsedUrl.wsgi_var)
 
-	data += "\nSys-mods names.\n"
-	for x in sys_mods:
-		mod = sys_mods[x] #weird import naming?
-		data += "{}\n".format(mod.mod_name)
+	if not pure:
+		data += "\nSys-mods names.\n"
+		for x in sys_mods:
+			mod = sys_mods[x] #weird import naming?
+			data += "{}\n".format(mod.mod_name)
 	return data
 
 def dump_dir(obj):
@@ -43,3 +47,8 @@ def dump_config(config):
 		enc += "modules: {}\n".format(config.modules)
         return enc
 
+def get_url_arg(arg, env, default=None):
+	if env.env["PARSED_QUERY"] != None:
+		return env.env["PARSED_QUERY"].get(arg, default)
+	else:
+		return default
