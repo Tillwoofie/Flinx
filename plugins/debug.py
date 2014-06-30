@@ -3,6 +3,7 @@
 def main(environ, parsedUrl, config, sys_mods):
 
 	pure = bool(get_url_arg("pure", parsedUrl, False))
+	body = bool(get_url_arg("body", parsedUrl, False))
 
 	data = "Hello World!\n\n"
 	data += "ENVIRON DUMP\n"
@@ -16,6 +17,11 @@ def main(environ, parsedUrl, config, sys_mods):
 		data += dump_dict(parsedUrl.env)
 	data += "\nWSGI VARS\n"
 	data += dump_dict(parsedUrl.wsgi_var)
+
+	if not pure or body:
+		data += "\nBody Test:\n"
+		body_data = parsedUrl.wsgi_var["wsgi.input"].read()
+		data += body_data + "\n"
 
 	if not pure:
 		data += "\nSys-mods names.\n"
