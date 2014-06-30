@@ -18,7 +18,7 @@ class Environ_Parse(object):
 
 	def parse_query(self):
 		import urlparse
-		return dict(urlparse.parse_qsl(self.env["QUERY_STRING"]))
+		return urlparse.parse_qs(self.env["QUERY_STRING"], True)
 
 
 	def parse_environ(self):
