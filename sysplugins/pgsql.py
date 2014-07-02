@@ -13,4 +13,10 @@ class Config(object):
 		self.password = kwargs.get('password', 'nada')
 		self.host = kwargs.get('host', 'localhost')
 		self.port = kwargs.get('port', '5432')
+		self.conn = self.get_pgsql_connection()
+	
+	def get_pgsql_connection():
+		return psycopg2.connect(database=self.database, user=self.user, password=self.password, host=self.host, port=self.port)
 
+	def get_existing_connection():
+		return self.conn
