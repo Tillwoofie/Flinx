@@ -19,4 +19,5 @@ class Config(object):
 		return psycopg2.connect(database=self.database, user=self.user, password=self.password, host=self.host, port=self.port)
 
 	def get_existing_connection():
+		self.conn.autocommit = False #always make sure ti's returned to the default False.
 		return self.conn
