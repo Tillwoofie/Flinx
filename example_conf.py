@@ -5,7 +5,7 @@ conf = {}
 
 # what modules to load
 sys_modules = ['pgsql', 'redis-cache']
-modules = ['debug', 'redis_test']
+modules = ['debug', 'redis_test', 'pgsql_test']
 
 #postgres config
 pgsql = {}
