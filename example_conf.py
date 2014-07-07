@@ -9,14 +9,14 @@
 # in the root of the project, at <http://www.gnu.org/licenses/>,
 # or at <https://github.com/Tillwoofie/Flinx/blob/master/LICENCE>
 
-#main conf var.
+# main conf var.
 conf = {}
 
 # what modules to load
 sys_modules = ['pgsql', 'redis-cache']
 modules = ['debug', 'redis_test', 'pgsql_test']
 
-#postgres config
+# postgres config
 pgsql = {}
 pgsql['user'] = 'flinx'
 pgsql['pass'] = 'a_password'
@@ -24,7 +24,7 @@ pgsql['address'] = "localhost"
 pgsql['port'] = "5432"
 pgsql['db'] = "flinx"
 
-#redis config
+# redis config
 rc = {}
 rc['address'] = "localhost"
 rc["port"] = "6379"
