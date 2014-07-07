@@ -19,5 +19,6 @@ def main(environ, parsedUrl, config, sys_mods):
     # config has the imported configuration for modules.
     # sys_mods has access to database and caching modules.
 
+    data = ""
     # return page/api content as a string.
     return data

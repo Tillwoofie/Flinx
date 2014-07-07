@@ -35,31 +35,3 @@ def application(environ, start_response):
         ("Content-Length", str(len(data)))
     ])
     return iter([data])
-
-
-def dump_environ(environ):
-    enc = ""
-    for x in environ.keys():
-        enc += "{}: {}\n".format(x, environ[x])
-    return enc
-
-
-def dump_config(config):
-        enc = ""
-        for x in config.config.keys():
-                enc += "{}: {}\n".format(x, config.config[x])
-        enc += "sys_modules: {}\n".format(config.sys_modules)
-        enc += "modules: {}\n".format(config.modules)
-        return enc
-
-
-def route_request(environ, parsedUrl, config):
-    '''
-    Main function to route requests into different modules.
-
-    Takes in environ and config, but only uses information from parsedUrl
-     (an Environ_Parse instance).
-
-    For the time being, it needs to have routes statically configured in here.
-    '''
-    pass

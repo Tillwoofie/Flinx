@@ -20,7 +20,7 @@ def main(environ, parsedUrl, config, sys_mods):
         return "Cannot test, requires pgsql module."
     pg_conn = sys_mods['redis-cache'].get_existing_connection()
     pg_conn.autocommit = True  # better performance test for this.
-    cur = pg.cursor()
+    cur = pg_conn.cursor()
 
     test_table = "pgsql_test_23745"  # semi-random key mashing.
 
@@ -32,7 +32,7 @@ def main(environ, parsedUrl, config, sys_mods):
     words = generate_words_list(LIST_SIZE)
 
     timings = test_list_pgsql(cur, words)
-    data += ret_r_timings(timings)
+    data += ret_r_timing(timings)
 
     # make sure we clean up.
     drop_if_exists(cur, test_table)
